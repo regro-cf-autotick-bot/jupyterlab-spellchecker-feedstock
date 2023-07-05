@@ -17,12 +17,15 @@ build:
 
 requirements:
   host:
-    - jupyter-packaging
+    - hatchling>=1.5.0
+    - jupyterlab>=4.0.0,<5
+    - hatch-nodejs-version
+    - python-build
     - pip
-    - python >=3.6
+    - python >=3.8
   run:
-    - jupyterlab ~=3.0
-    - python >=3.6
+    - jupyterlab ~=4.0
+    - python >=3.8
 
 test:
   imports:
@@ -31,7 +34,7 @@ test:
     - pip check
     - jupyter labextension list
     - jupyter labextension list 1>labextensions 2>&1
-    - cat labextensions | grep "@ijmbarr/jupyterlab_spellchecker.*OK"  # [unix]
+    - cat labextensions | grep "@jupyterlab-contrib/spellchecker.*OK"  # [unix]
   requires:
     - pip
 
