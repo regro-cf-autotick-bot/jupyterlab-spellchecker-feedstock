@@ -1,5 +1,5 @@
 {% set name = "jupyterlab-spellchecker" %}
-{% set version = "0.7.3" %}
+{% set version = "0.8.2" %}
 
 
 package:
@@ -7,8 +7,8 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/jupyterlab-spellchecker-{{ version }}.tar.gz
-  sha256: 5b862228479b33b95b9d4eb47482b4a11c6732efb2c8c8123c7f88efc3695e76
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_') }}-{{ version }}.tar.gz
+  sha256: f5a17806b8549f53eba2073f92aeeaaa0c9a871d73762c4955717609cdeaa788
 
 build:
   number: 0
@@ -17,12 +17,16 @@ build:
 
 requirements:
   host:
-    - jupyter-packaging
+    - hatchling >=1.5.0
+    - jupyterlab >=4.0.0,<5
+    - hatch-nodejs-version
+    - hatch-jupyter-builder >=0.5
+    - python-build
     - pip
-    - python >=3.6
+    - python >=3.8
   run:
-    - jupyterlab ~=3.0
-    - python >=3.6
+    - jupyterlab ~=4.0
+    - python >=3.8
 
 test:
   imports:
@@ -31,7 +35,7 @@ test:
     - pip check
     - jupyter labextension list
     - jupyter labextension list 1>labextensions 2>&1
-    - cat labextensions | grep "@ijmbarr/jupyterlab_spellchecker.*OK"  # [unix]
+    - cat labextensions | grep "@jupyterlab-contrib/spellchecker.*OK"  # [unix]
   requires:
     - pip
 
