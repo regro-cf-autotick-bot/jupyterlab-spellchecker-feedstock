@@ -1,5 +1,5 @@
 {% set name = "jupyterlab-spellchecker" %}
-{% set version = "0.8.2" %}
+{% set version = "0.8.3" %}
 
 
 package:
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_') }}-{{ version }}.tar.gz
-  sha256: f5a17806b8549f53eba2073f92aeeaaa0c9a871d73762c4955717609cdeaa788
+  sha256: 17936d8d8fa8f20cea2c24b2c44cca81061bfd2da94a38b4dcebdfa7972b8859
 
 build:
   number: 0
