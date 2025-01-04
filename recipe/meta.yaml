@@ -7,11 +7,11 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_') }}-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_') }}-{{ version }}.tar.gz
   sha256: e0722f00c795e8b5d60655ed475dd91a67fe7180c32ac891a50f38c7abc7684b
 
 build:
-  number: 0
+  number: 1
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv
 
@@ -23,10 +23,10 @@ requirements:
     - hatch-jupyter-builder >=0.5
     - python-build
     - pip
-    - python >=3.8
+    - python {{ python_min }}
   run:
     - jupyterlab ~=4.0
-    - python >=3.8
+    - python >={{ python_min }}
 
 test:
   imports:
@@ -38,6 +38,7 @@ test:
     - cat labextensions | grep "@jupyterlab-contrib/spellchecker.*OK"  # [unix]
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://github.com/jupyterlab-contrib/spellchecker
